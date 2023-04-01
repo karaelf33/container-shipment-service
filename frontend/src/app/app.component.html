@@ -1,0 +1,67 @@
+<h1 class="text-center mt-3">Container Shipment Service</h1>
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>📜 Shipments</h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#executionPlanModel" class="btn btn-success" data-toggle="modal">
+                            <i class="material-icons">&#xE147;</i>
+                            <span>Create Execution Plan</span></a>
+
+                        <a class="btn btn-secondary">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                            <span>Load new shipments</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        <span class="custom-checkbox">
+                        <input type="checkbox" id="selectAll">
+                        <label for="selectAll"></label>
+                        </span>
+                    </th>
+                    <th>Shipment ID</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Created</th>
+                    <th>Transport Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let shipment of shipments">
+                    <td>
+                     <span class="custom-checkbox">
+                     <input type="checkbox" name="options">
+                     <label></label>
+                     </span>
+                    </td>
+                    <td>{{ shipment.id }}</td>
+                    <td>{{ shipment.origin }}</td>
+                    <td>{{ shipment.destination }}</td>
+                    <td>{{ shipment.createdDate | date : 'MMM d, y' }}</td>
+                    <td class="transport-type">
+                        <span *ngIf="shipment.transportType === AIR">✈️</span>
+                        <span *ngIf="shipment.transportType === SEA">🚢</span>
+                        <span *ngIf="shipment.transportType === ROAD">🚚</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<hr class="vertical-separator" />
+
+<execution-plan-component></execution-plan-component>
+
+
+<execution-plan-model [shipment]="selectedShipment"></execution-plan-model>

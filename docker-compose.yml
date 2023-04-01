@@ -1,0 +1,23 @@
+version: "3.2"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_PASS=kn
+      - RABBITMQ_DEFAULT_USER=kn
+    container_name: 'rabbitmq'
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+
+  rabbitmq-publisher:
+    image: rabbitmq-publisher  #HINT: to build this docker image, use the Dockerfile which exists in the following folder /docker/rabbitmq-publisher/Dockerfile
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      PUBLISH_FREQUENCY: 5
+
+  # Run the backend as docker here
+  #backend:
+  #.......
