@@ -4,8 +4,8 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
     environment:
-      - RABBITMQ_DEFAULT_PASS=1234
-      - RABBITMQ_DEFAULT_USER=yusufbestas
+      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_DEFAULT_USER=guest
     container_name: 'rabbitmq'
     ports:
       - "5672:5672"
@@ -14,6 +14,9 @@ services:
 
   rabbitmq-publisher:
     image: rabbitmq-publisher  #HINT: to build this docker image, use the Dockerfile which exists in the following folder /docker/rabbitmq-publisher/Dockerfile
+    build:
+      context: ./docker/rabbitmq-publisher
+      dockerfile: Dockerfile
     environment:
       RABBITMQ_HOST: rabbitmq
       PUBLISH_FREQUENCY: 5
