@@ -10,11 +10,10 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
-
 @Configuration
 class Config {
 
-    @Bean
+  /*  @Bean
     @Throws(Exception::class)
     fun run(templateRepository: TemplateRepository,
             actionRepository: ActionRepository,
@@ -37,6 +36,6 @@ class Config {
             templateRepository.save(defaultPlanTemplate)
             templateRepository.findAll().forEach(::print)
         }
-    }
+    }*/
 
 }

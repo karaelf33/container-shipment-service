@@ -1,9 +1,20 @@
 package com.kn.containershipment.model
 
-import jakarta.persistence.*
+import jakarta.persistence.Id
+import jakarta.persistence.Entity
+import jakarta.persistence.Table
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.OneToMany
+import jakarta.persistence.CascadeType
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.OneToOne
+import jakarta.persistence.FetchType
+import lombok.Data
 
 @Entity
 @Table(name = "plan_template")
+@Data
 data class PlanTemplate(
 
     @Id
@@ -23,6 +34,7 @@ data class PlanTemplate(
 
 @Entity
 @Table
+@Data
 data class Action(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
