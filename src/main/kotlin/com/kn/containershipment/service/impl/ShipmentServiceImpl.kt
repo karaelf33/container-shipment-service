@@ -1,8 +1,8 @@
-package com.kn.containershipment.service
+package com.kn.containershipment.service.impl
 
 import com.kn.containershipment.model.Shipment
 import com.kn.containershipment.repository.ShipmentRepository
-import org.springframework.beans.factory.annotation.Autowired
+import com.kn.containershipment.service.ShipmentService
 import org.springframework.stereotype.Service
 
 @Service
