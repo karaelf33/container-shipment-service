@@ -20,18 +20,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>2523423</td>
-                    <td>Frankfurt</td>
-                    <td>Berlin</td>
-                    <td>Yes</td>
-                    <td>No</td>
+                <tr *ngFor="let executionPlan of executionPlans.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)">
+                    <td>{{executionPlan.id}}</td>
+                    <td>{{executionPlan.origin}}</td>
+                    <td>{{executionPlan.destination}}</td>
+                    <td>{{executionPlan.notifyCustomer}}</td>
+                    <td>{{executionPlan.transportType}}</td>
                     <td class="transport-type">
                         <span>✈️</span>
                     </td>
                 </tr>
                 </tbody>
             </table>
+            <mat-paginator [length]="executionPlans.length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                           [pageSizeOptions]="pageOptions" (page)="onPageChange($event)">
+            </mat-paginator>
 
         </div>
     </div>

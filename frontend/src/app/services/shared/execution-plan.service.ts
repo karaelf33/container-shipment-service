@@ -13,7 +13,6 @@ export class ExecutionPlanService {
   constructor(private apiService: ApiService) { }
 
   createUser(shipment:Shipment[]): Observable<any> {
-      console.log(shipment)
     return this.apiService.post(this.EXECUTION_PLANS, shipment).pipe(map(
         res => {
           if (res) {
@@ -25,4 +24,20 @@ export class ExecutionPlanService {
         }
     ));
   }
+
+    getExecutionPlans(): Observable<any> {
+        return this.apiService.get(this.EXECUTION_PLANS).pipe(map(
+            res => {
+                if (res) {
+                    return res;
+                } else {
+                    console.log(res);
+                    return {};
+                }
+            }
+        ));
+    }
+
+
+
 }

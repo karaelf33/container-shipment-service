@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Shipment, TransportType} from "../../models/shipment.mode";
+import {Shipment} from "../../models/shipment.mode";
 import {ShipmentSelectionService} from "../../services/shared/shipment-selection.service";
 import {ExecutionPlanService} from "../../services/shared/execution-plan.service";
 
@@ -28,7 +28,11 @@ export class ExecutionPlanModelComponent implements OnInit {
 
     createExecutionPlan() {
         this.selectedShipments = this.shipmentSelectionService.getSelectedShipments();
-        this.executionPlanService.createUser(this.selectedShipments).subscribe();
+        this.executionPlanService.createUser(this.selectedShipments).subscribe(result=>{
+            console.log(result);
+            }
+
+        );
 
 
     }

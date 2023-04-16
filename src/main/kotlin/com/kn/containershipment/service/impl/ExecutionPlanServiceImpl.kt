@@ -26,4 +26,9 @@ class ExecutionPlanServiceImpl(private val executionPlanRepository: ExecutionPla
 
 
     }
+
+    override fun getAllExecutionPlan(): List<ExecutionPlan> {
+        return executionPlanRepository.findAll()
+
+    }
 }

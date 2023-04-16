@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
     shipments: Shipment[] = [];
     selectedShipment: Shipment;
-    pageSize = 10;
+    pageSize = 5;
     pageIndex = 0;
     pageOptions: number[] = [5, 10, 25, 50];
 

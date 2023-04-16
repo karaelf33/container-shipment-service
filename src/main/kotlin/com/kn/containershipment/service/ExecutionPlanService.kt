@@ -5,6 +5,7 @@ import com.kn.containershipment.model.ExecutionPlan
 
 interface ExecutionPlanService {
     fun createExecutionPlans(shipments: List<ShipmentDTO>): List<ExecutionPlan>
+    fun getAllExecutionPlan(): List<ExecutionPlan>
 
 
 }
