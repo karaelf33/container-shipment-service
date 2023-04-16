@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration
 class RabbitMQConfig {
     @Autowired
     private lateinit var shipmentRepository: ShipmentRepository
+
     @RabbitListener(queues = ["shipment"])
     fun handleMessage(message: String) {
         val shipment = Gson().fromJson(message, Shipment::class.java)

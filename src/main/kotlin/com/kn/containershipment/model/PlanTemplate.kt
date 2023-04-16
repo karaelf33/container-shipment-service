@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.OneToOne
 import jakarta.persistence.FetchType
 import lombok.Data
+import org.hibernate.Hibernate
 
 @Entity
 @Table(name = "plan_template")
@@ -30,7 +31,22 @@ data class PlanTemplate(
     @OneToOne(cascade = [CascadeType.ALL], orphanRemoval = true, fetch=FetchType.LAZY)
     @JoinColumn(name = "fk_temperature_range_id")
     val temperatureRange: TemperatureRange? = null
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
+        other as PlanTemplate
+
+        return id != null && id == other.id
+    }
+
+    override fun hashCode(): Int = javaClass.hashCode()
+
+    @Override
+    override fun toString(): String {
+        return this::class.simpleName + "(id = $id , name = $name )"
+    }
+}
 
 @Entity
 @Table

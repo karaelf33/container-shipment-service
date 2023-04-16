@@ -1,7 +1,7 @@
 
 
 export interface Shipment {
-    id: Number,
+    shipmentId: Number,
 
     origin: String,
 

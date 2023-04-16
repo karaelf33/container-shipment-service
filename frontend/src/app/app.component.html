@@ -7,12 +7,12 @@
                     <div class="col-sm-6">
                         <h2>📜 Shipments</h2>
                     </div>
-                    <div class="col-sm-6">
+                    <div  class="col-sm-6">
                         <a href="#executionPlanModel" class="btn btn-success" data-toggle="modal">
                             <i class="material-icons">&#xE147;</i>
                             <span>Create Execution Plan</span></a>
 
-                        <a class="btn btn-secondary">
+                        <a class="btn btn-secondary" >
                             <i class="fa fa-refresh" aria-hidden="true"></i>
                             <span>Load new shipments</span></a>
                     </div>
@@ -35,25 +35,31 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let shipment of shipments">
+                <tr *ngFor="let shipment of shipments.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)">
                     <td>
                      <span class="custom-checkbox">
                      <input type="checkbox" name="options">
                      <label></label>
                      </span>
                     </td>
-                    <td>{{ shipment.id }}</td>
+                    <td>{{ shipment.shipmentId }}</td>
                     <td>{{ shipment.origin }}</td>
                     <td>{{ shipment.destination }}</td>
-                    <td>{{ shipment.createdDate | date : 'MMM d, y' }}</td>
+                    <td>{{ shipment.createdDate}}</td>
                     <td class="transport-type">
                         <span *ngIf="shipment.transportType === AIR">✈️</span>
                         <span *ngIf="shipment.transportType === SEA">🚢</span>
                         <span *ngIf="shipment.transportType === ROAD">🚚</span>
                     </td>
+
                 </tr>
+
+
                 </tbody>
             </table>
+            <mat-paginator [length]="shipments.length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                           [pageSizeOptions]="pageOptions" (page)="onPageChange($event)">
+            </mat-paginator>
 
         </div>
     </div>
