@@ -3,12 +3,14 @@ import {ApiService} from "../api.service";
 import {Observable} from "rxjs";
 import {Shipment} from "../../models/shipment.mode";
 import {map} from "rxjs/operators";
+import {ExecutionPlan} from "../../models/ExecutionPland.mode";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExecutionPlanService {
   private EXECUTION_PLANS = '/execution-plans';
+    private executionPlans: ExecutionPlan[] = [];
 
   constructor(private apiService: ApiService) { }
 
@@ -24,7 +26,6 @@ export class ExecutionPlanService {
         }
     ));
   }
-
     getExecutionPlans(): Observable<any> {
         return this.apiService.get(this.EXECUTION_PLANS).pipe(map(
             res => {
@@ -37,7 +38,5 @@ export class ExecutionPlanService {
             }
         ));
     }
-
-
 
 }

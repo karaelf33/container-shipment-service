@@ -24,10 +24,6 @@ export class ExecutionPlanModelComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    getSelectedShipments() {
-        this.selectedShipments = this.shipmentSelectionService.getSelectedShipments();
-    }
-
     createExecutionPlan() {
         this.selectedShipments = this.shipmentSelectionService.getSelectedShipments();
         this.executionPlanService.createUser(this.selectedShipments).subscribe(
@@ -38,6 +34,7 @@ export class ExecutionPlanModelComponent implements OnInit {
                             duration: 3000,
                             panelClass: ['snackbar-success', 'custom-snackbar'], // Add custom CSS class
                             verticalPosition: 'top'
+
                         });
                     }, index * 1000);
                 });
@@ -46,5 +43,9 @@ export class ExecutionPlanModelComponent implements OnInit {
                 console.error(error);
             }
         );
+    }
+
+    getSelectedShipments() {
+        this.selectedShipments = this.shipmentSelectionService.getSelectedShipments();
     }
 }
