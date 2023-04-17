@@ -9,6 +9,7 @@ import {ApiService} from "./services/api.service";
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         HttpClientModule,
         BrowserAnimationsModule,
         MatPaginatorModule,
+        MatSnackBarModule
     ],
   providers: [
     ApiService,

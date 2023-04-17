@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Shipment} from "../../models/shipment.mode";
 import {ShipmentSelectionService} from "../../services/shared/shipment-selection.service";
 import {ExecutionPlanService} from "../../services/shared/execution-plan.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
     selector: 'execution-plan-model',
@@ -16,7 +17,8 @@ export class ExecutionPlanModelComponent implements OnInit {
 
 
     constructor(private shipmentSelectionService: ShipmentSelectionService,
-                private executionPlanService: ExecutionPlanService) {
+                private executionPlanService: ExecutionPlanService,
+                private snackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {
@@ -28,12 +30,21 @@ export class ExecutionPlanModelComponent implements OnInit {
 
     createExecutionPlan() {
         this.selectedShipments = this.shipmentSelectionService.getSelectedShipments();
-        this.executionPlanService.createUser(this.selectedShipments).subscribe(result=>{
-            console.log(result);
+        this.executionPlanService.createUser(this.selectedShipments).subscribe(
+            result => {
+                result.forEach((plan, index) => {
+                    setTimeout(() => {
+                        this.snackBar.open(`Execution Plan created successfully! ID=${plan.id}`, 'Close', {
+                            duration: 3000,
+                            panelClass: ['snackbar-success', 'custom-snackbar'], // Add custom CSS class
+                            verticalPosition: 'top'
+                        });
+                    }, index * 1000);
+                });
+            },
+            error => {
+                console.error(error);
             }
-
         );
-
-
     }
 }

@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
     getNewShipments() {
         this.shipmentService.getShipments().subscribe(result => {
             this.shipments = result;
+            (this.shipments.filter(i => console.log(i.transportType)))
         })
     }
 
